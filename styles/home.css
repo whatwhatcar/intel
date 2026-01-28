@@ -1,5 +1,7 @@
-.header {
+.hero {
     height: 100vh;
     width: 100vw;
     background-color: aqua;
+    background-image: url("../assets/images/chip.jpg");
+    background-size: 100% 100%;
 }
