@@ -1,7 +1,22 @@
 .hero {
     height: 100vh;
-    width: 100vw;
-    background-color: aqua;
     background-image: url("../assets/images/chip.jpg");
-    background-size: 100% 100%;
+    background-position: center;
+    background-size: cover;
+}
+
+.hero-content {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.title {
+    color: white;
+    font-size: 100px;
+    -webkit-text-stroke-color: black;
+    -webkit-text-size-width: 2px;
+    font-family: 'Courier New', Courier, monospace;
 }
