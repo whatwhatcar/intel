@@ -13,10 +13,177 @@
     text-align: center;
 }
 
-.title {
+.main-content {
+    height: auto;
+    background: linear-gradient(135deg,
+            #0f0f10,
+            #1a1a1c);
+}
+
+.time-text {
+    padding-top: 20px;
+    padding-left: 20px;
+
+    font-size: 50px;
     color: white;
-    font-size: 100px;
-    -webkit-text-stroke-color: black;
-    -webkit-text-size-width: 2px;
-    font-family: 'Courier New', Courier, monospace;
+
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    text-shadow:
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+}
+
+.section-divider {
+    width: 95%;
+    height: 2px;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.timeline-scroll {
+    height: 315px;
+    width: 90%;
+    margin-top: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    overflow: auto;
+    display: flex;
+    white-space: nowrap;
+    overflow-x: auto;
+    align-items: center;
+
+    padding-left: 50px;
+    padding-right: 50px;
+
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+}
+
+.year-border {
+    width: auto;
+    height: 50px;
+    background-color: yellow;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.year-text {
+    font-size: 30px;
+}
+
+.timeline-box {
+    position: relative;
+    overflow: hidden;
+    height: 250px;
+    width: 250px;
+    flex-shrink: 0;
+    margin: 10px;
+
+    background-color: black;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, .5);
+    transition: all 0.3s ease;
+    white-space: normal;
+    overflow-wrap: break-word;
+    position: relative;
+
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+}
+
+.timeline-box::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+}
+
+.timeline-box:hover::before {
+    opacity: 1;
+}
+
+.timeline-box:hover .timeline-text {
+    opacity: 1;
+}
+
+.timeline-box:hover {
+    transform: scale(1.1);
+    z-index: 10;
+}
+
+.timeline-text {
+    opacity: 0;
+    color: white;
+    transition: opacity 0.3s ease;
+}
+
+.year-border,
+.timeline-text {
+    position: relative;
+    z-index: 2;
+}
+
+.whitespace {
+    height: 1000px;
+}
+
+.timeline-box::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+}
+
+@media (max-width: 768px) {
+    
+    .timeline-scroll {
+        display: block;     
+        height: auto;
+        overflow-x: hidden;
+        white-space: normal;
+        width: 100%;
+        padding: 20px 0;
+    }
+
+    .timeline-box {
+        margin: 20px auto;
+        width: 90%;
+        height: auto;
+        min-height: 250px;
+        transform: none !important;
+    }
+
+    .timeline-text {
+        opacity: 1;
+        padding-bottom: 20px;
+    }
+
+    .timeline-box::before {
+        opacity: 1;
+        background-color: rgba(0, 0, 0, 0.7); /* Slightly darker for better contrast */
+    }
 }
