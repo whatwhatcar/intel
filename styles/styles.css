@@ -15,9 +15,7 @@
 
 .main-content {
     height: auto;
-    background: linear-gradient(135deg,
-            #0f0f10,
-            #1a1a1c);
+    background: linear-gradient(135deg, #1c3dd4, #020617);
 }
 
 .time-text {
@@ -28,11 +26,11 @@
     color: white;
 
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    text-shadow:
-        -1px -1px 0 #000,
-        1px -1px 0 #000,
-        -1px 1px 0 #000,
-        1px 1px 0 #000;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
+    font-weight: 600;
+    letter-spacing: -0.5px;
+
 }
 
 .section-divider {
@@ -50,7 +48,7 @@
     margin-top: 25px;
     margin-left: auto;
     margin-right: auto;
-    background-color: white;
+    background-color: transparent;
     overflow: auto;
     display: flex;
     white-space: nowrap;
@@ -67,7 +65,7 @@
 .year-border {
     width: auto;
     height: 50px;
-    background-color: yellow;
+    background-color: #1f62cf;
     text-align: center;
     align-items: center;
     justify-content: center;
@@ -75,6 +73,7 @@
 }
 
 .year-text {
+    color: white;
     font-size: 30px;
 }
 
@@ -132,6 +131,8 @@
 .timeline-text {
     opacity: 0;
     color: white;
+    padding-top: 5px;
+    padding-left: 5px;
     transition: opacity 0.3s ease;
 }
 
@@ -142,7 +143,7 @@
 }
 
 .whitespace {
-    height: 1000px;
+    height: 200px;
 }
 
 .timeline-box::before {
@@ -159,9 +160,9 @@
 }
 
 @media (max-width: 768px) {
-    
+
     .timeline-scroll {
-        display: block;     
+        display: block;
         height: auto;
         overflow-x: hidden;
         white-space: normal;
@@ -184,6 +185,6 @@
 
     .timeline-box::before {
         opacity: 1;
-        background-color: rgba(0, 0, 0, 0.7); /* Slightly darker for better contrast */
+        background-color: rgba(0, 0, 0, 0.7);
     }
 }
