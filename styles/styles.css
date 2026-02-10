@@ -9,22 +9,25 @@
 }
 
 /* Force all main text to white */
-.main-wrapper, 
-.subscription-card, 
+.main-wrapper,
+.subscription-card,
 .intel-footer {
     color: #FFFFFF !important;
 }
 
 /* Specific fix for the "text-dim" and "text-muted" gray classes */
-.text-dim, .text-muted {
-    color: #E5E5E5 !important; /* A light silver, much easier to see than gray */
+.text-dim,
+.text-muted {
+    color: #E5E5E5 !important;
+    /* A light silver, much easier to see than gray */
     opacity: 1 !important;
 }
 
 /* Ensure headings are pure white */
-h2.section-title, h3.column-header {
+h2.section-title,
+h3.column-header {
     color: #FFFFFF !important;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 /* Fix for input text visibility */
@@ -33,7 +36,8 @@ h2.section-title, h3.column-header {
 }
 
 .subscription-input::placeholder {
-    color: #BBBBBB !important; /* Lighter placeholder for accessibility */
+    color: #BBBBBB !important;
+    /* Lighter placeholder for accessibility */
 }
 
 /* Hero Section */
@@ -57,7 +61,8 @@ h2.section-title, h3.column-header {
 
 /* Add this to your styles.css */
 [dir="rtl"] .timeline-container {
-    flex-direction: row; /* Flex items flip automatically in RTL */
+    flex-direction: row;
+    /* Flex items flip automatically in RTL */
     padding-left: 0;
     padding-right: 50px;
 }
@@ -70,7 +75,8 @@ h2.section-title, h3.column-header {
 
 .timeline-title {
     padding: 40px 0 10px 40px;
-    font-size: 3.5rem; /* Better scaling */
+    font-size: 3.5rem;
+    /* Better scaling */
     color: var(--text-light);
     font-family: 'Intel One', system-ui, -apple-system, sans-serif;
     font-weight: 700;
@@ -84,95 +90,128 @@ h2.section-title, h3.column-header {
     margin: 10px auto;
     background-color: rgba(255, 255, 255, 0.2);
 }
-
-/* Timeline Container */
+/* Timeline Container - The Scrolling "Carousel" */
 .timeline-container {
-    height: 400px;
+    height: 450px; /* Increased to allow for hover lift */
     width: 95%;
     margin: 30px auto;
     display: flex;
     align-items: center;
-    overflow-x: auto;
-    gap: 20px;
-    padding: 0 50px;
+        gap: 30px; /* Space between cards */
+    padding: 20px 50px; /* Extra padding for hover room */
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch; /* Smooth scroll for mobile */
     scrollbar-width: thin;
     scrollbar-color: var(--intel-blue) transparent;
 }
 
-/* Timeline Cards */
+/* 1. Target the text with high specificity to beat Bootstrap */
+.timeline-container .timeline-card .card-description {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 25px 20px;
+    
+    /* Force white text and full opacity */
+    color: #FFFFFF !important; 
+    opacity: 1 !important;
+    z-index: 10; /* Ensures text sits ABOVE all overlays */
+    
+    /* Solid background at the bottom to ensure no image bleed-through */
+    background: linear-gradient(
+        to top, 
+        rgba(0, 8, 20, 1) 0%,     /* Pure Intel Dark at bottom */
+        rgba(0, 8, 20, 0.95) 70%,  /* Very dark through text */
+        transparent 100%          /* Fades out only at the top */
+    );
+    
+    font-size: 1.1rem;
+    line-height: 1.5;
+    text-shadow: none !important; /* Removes the blur */
+    transition: transform 0.3s ease;
+}
+
+/* 2. Fix the Card structure */
 .timeline-card {
     position: relative;
-    flex-shrink: 0;
-    width: 280px;
-    height: 280px;
+    flex: 0 0 320px; /* Prevents cards from squishing */
+    height: 380px;
     background-color: #000;
     background-size: cover;
     background-position: center;
-    border-radius: 4px; /* Subtle rounding for modern look */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    transition: transform var(--transition-standard), box-shadow var(--transition-standard);
-    scroll-snap-align: center;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
     overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    z-index: 1;
 }
 
-/* Accessibility: Keyboard focus and Hover effects */
-.timeline-card:hover, 
-.timeline-card:focus-within {
-    transform: scale(1.05);
-    box-shadow: 0 0 20px var(--intel-blue);
-    outline: none;
+/* 3. Ensure the hover effect doesn't hide text */
+.timeline-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+    border-color: var(--intel-blue);
 }
 
-/* Overlay for Text Contrast */
+/* 4. Fix the overlay (The 'Curtain' behind the text) */
 .timeline-card::before {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.9) 20%, transparent 100%);
-    opacity: 0.8;
-    transition: opacity var(--transition-standard);
-    z-index: 1;
-}
-
-.timeline-card:hover::before,
-.timeline-card:focus-within::before {
-    opacity: 1;
-}
-
-/* Label/Year Styling */
-.timeline-card .card-header {
-    position: relative;
+    background: rgba(0, 0, 0, 0.3); /* Dim the whole image slightly */
     z-index: 2;
-    background-color: var(--intel-blue);
-    color: white;
-    padding: 8px 15px;
-    font-weight: bold;
-    font-size: 1.25rem;
-    display: inline-block;
+    transition: background 0.3s ease;
 }
 
+.timeline-card:hover::before {
+    background: rgba(0, 0, 0, 0.5); /* Darken more on hover for contrast */
+}
+
+/* Fix for the Scrollbar appearance */
+.timeline-container::-webkit-scrollbar {
+    height: 8px;
+}
+.timeline-container::-webkit-scrollbar-thumb {
+    background: var(--intel-blue);
+    border-radius: 10px;
+}
+
+/* Description Fix - Ensure it's readable */
 .card-description {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
     padding: 20px;
-    color: var(--text-light);
-    z-index: 2;
-    opacity: 1; /* Keep visible for better accessibility */
+    /* Using a more solid background at the bottom for maximum legibility */
+    background: linear-gradient(
+        to top, 
+        rgba(0, 8, 20, 1) 0%,     /* Solid Intel Dark at the base */
+        rgba(0, 8, 20, 0.9) 60%,  /* Heavy opacity through the text area */
+        transparent 100%          /* Fades out only at the top */
+    );
+    color: #FFFFFF !important;
     font-size: 1rem;
-    line-height: 1.4;
-    transform: translateY(10px);
-    transition: transform var(--transition-standard);
+    line-height: 1.5;
+    text-shadow: none !important; /* Removes the "blurry" effect */
+    transform: translateY(0);     /* Keep it stable for better reading */
+    z-index: 10;
+}
+
+.timeline-card:hover .card-description {
+    transform: translateY(0);
 }
 
 /* Container for each standalone column */
 .info-column {
-    background: transparent; /* Makes the "table" invisible */
+    background: transparent;
+    /* Makes the "table" invisible */
     padding: 20px;
-    border-left: 1px solid rgba(255, 255, 255, 0.2); /* Subtle vertical divider */
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    /* Subtle vertical divider */
 }
 
 /* Header styling for visibility */
@@ -193,7 +232,8 @@ h2.section-title, h3.column-header {
 
 .column-details {
     color: #E5E5E5;
-    background: rgba(255, 255, 255, 0.05); /* Very subtle background for reading contrast */
+    background: rgba(255, 255, 255, 0.05);
+    /* Very subtle background for reading contrast */
     padding: 15px;
     border-radius: 4px;
     margin-top: 10px;
@@ -206,11 +246,13 @@ h2.section-title, h3.column-header {
     color: white !important;
     border: 2px solid white;
     font-weight: bold;
-    width: 100%; /* Makes button easier to click */
+    width: 100%;
+    /* Makes button easier to click */
 }
 
 .btn-intel-action:focus {
-    outline: 4px solid #ffcc00; /* High contrast yellow for keyboard focus */
+    outline: 4px solid #ffcc00;
+    /* High contrast yellow for keyboard focus */
 }
 
 /* Subscription Card Styling */
@@ -218,7 +260,8 @@ h2.section-title, h3.column-header {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 12px;
-    backdrop-filter: blur(10px); /* Modern glass effect */
+    backdrop-filter: blur(10px);
+    /* Modern glass effect */
 }
 
 .subscription-input {
@@ -230,7 +273,8 @@ h2.section-title, h3.column-header {
 
 .subscription-input:focus {
     background-color: #000000 !important;
-    box-shadow: 0 0 0 4px #ffcc00; /* High-contrast yellow focus ring */
+    box-shadow: 0 0 0 4px #ffcc00;
+    /* High-contrast yellow focus ring */
     outline: none;
 }
 
@@ -252,7 +296,8 @@ h2.section-title, h3.column-header {
     transition: color 0.2s ease;
 }
 
-.footer-links a:hover, .footer-links a:focus {
+.footer-links a:hover,
+.footer-links a:focus {
     color: var(--intel-blue);
     text-decoration: underline;
     outline: 2px solid #ffcc00;
@@ -264,11 +309,13 @@ h2.section-title, h3.column-header {
 
 #langSwitch:focus {
     box-shadow: none;
-    outline: 2px solid #ffcc00; /* Yellow focus for accessibility */
+    outline: 2px solid #ffcc00;
+    /* Yellow focus for accessibility */
 }
 
 #langSwitch option {
-    background: #000814; /* Matches your dark theme */
+    background: #000814;
+    /* Matches your dark theme */
     color: white;
 }
 
@@ -279,32 +326,57 @@ h2.section-title, h3.column-header {
     border-radius: 50%;
     padding: 20px;
     background-size: 60%;
-    border: 2px solid white; /* High contrast border */
+    border: 2px solid white;
+    /* High contrast border */
 }
 
-.carousel-control-prev, .carousel-control-next {
-    width: 5%; /* Larger click area */
-    opacity: 1; /* Always fully visible */
+.carousel-control-prev,
+.carousel-control-next {
+    width: 5%;
+    /* Larger click area */
+    opacity: 1;
+    /* Always fully visible */
 }
 
 /* Fix Card Layout inside Carousel */
 .carousel-item .timeline-card {
-    width: 100%; /* Fill the column width */
+    width: 100%;
+    /* Fill the column width */
     margin: 0 auto;
+    padding: 20px;
+    /* Provides "breathing room" so the card doesn't hit the edge */
 }
 
 /* Mobile Adjustments */
 @media (max-width: 768px) {
-    .timeline-container {
-        flex-direction: column;
-        height: auto;
-        overflow-x: hidden;
-        padding: 20px;
+    /* 1. Force the row to stay in one line (no wrapping) */
+    .carousel-item .row {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        scroll-snap-type: x mandatory;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        gap: 0; /* Remove gap to keep sizing simple */
     }
 
+    /* 2. Force each column to be the full width of the screen */
+    .carousel-item .col {
+        flex: 0 0 100% !important; /* Force 100% width of the carousel */
+        width: 100% !important;
+        scroll-snap-align: center;
+        padding: 0 20px; /* Give the card some breathing room from the edges */
+    }
+
+    /* 3. Adjust card height for mobile if needed */
     .timeline-card {
-        width: 100%;
-        max-width: 400px;
-        transform: none !important;
+        height: 320px !important;
+        margin: 0 auto;
+    }
+
+    /* 4. Hide the standard Carousel Controls on mobile (swiping is better) */
+    /* Or keep them but make them smaller */
+    .carousel-control-prev, .carousel-control-next {
+        width: 10%;
     }
 }
