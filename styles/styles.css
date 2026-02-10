@@ -1,190 +1,310 @@
+/* Custom Variables for Intel Theme & Accessibility */
+:root {
+    --intel-blue: #0068B5;
+    --intel-cobalt: #004A86;
+    --intel-dark: #000814;
+    --text-light: #FFFFFF;
+    --text-dim: #E5E5E5;
+    --transition-standard: 0.3s ease;
+}
+
+/* Force all main text to white */
+.main-wrapper, 
+.subscription-card, 
+.intel-footer {
+    color: #FFFFFF !important;
+}
+
+/* Specific fix for the "text-dim" and "text-muted" gray classes */
+.text-dim, .text-muted {
+    color: #E5E5E5 !important; /* A light silver, much easier to see than gray */
+    opacity: 1 !important;
+}
+
+/* Ensure headings are pure white */
+h2.section-title, h3.column-header {
+    color: #FFFFFF !important;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+/* Fix for input text visibility */
+.subscription-input {
+    color: #FFFFFF !important;
+}
+
+.subscription-input::placeholder {
+    color: #BBBBBB !important; /* Lighter placeholder for accessibility */
+}
+
+/* Hero Section */
 .hero {
     height: 100vh;
-    background-image: url("../assets/images/chip.jpg");
-    background-position: center;
-    background-size: cover;
+    background: url("../assets/images/chip.jpg") center/cover no-repeat;
+    display: flex;
 }
 
 .hero-content {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
+    width: 100%;
     text-align: center;
 }
 
-.main-content {
-    height: auto;
-    background: linear-gradient(135deg, #1c3dd4, #020617);
+/* Main Content Area */
+.main-wrapper {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--intel-cobalt), var(--intel-dark));
+    padding-bottom: 50px;
 }
 
-.time-text {
-    padding-top: 20px;
-    padding-left: 20px;
+/* Add this to your styles.css */
+[dir="rtl"] .timeline-container {
+    flex-direction: row; /* Flex items flip automatically in RTL */
+    padding-left: 0;
+    padding-right: 50px;
+}
 
-    font-size: 50px;
-    color: white;
+[dir="rtl"] .timeline-title {
+    padding-left: 0;
+    padding-right: 40px;
+    text-align: right;
+}
 
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-
-    font-weight: 600;
-    letter-spacing: -0.5px;
-
+.timeline-title {
+    padding: 40px 0 10px 40px;
+    font-size: 3.5rem; /* Better scaling */
+    color: var(--text-light);
+    font-family: 'Intel One', system-ui, -apple-system, sans-serif;
+    font-weight: 700;
+    letter-spacing: -1px;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
 }
 
 .section-divider {
-    width: 95%;
-    height: 2px;
-    margin-top: 10px;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: rgba(255, 255, 255, 0.15);
+    width: 92%;
+    height: 1px;
+    margin: 10px auto;
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
-.timeline-scroll {
-    height: 315px;
-    width: 90%;
-    margin-top: 25px;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: transparent;
-    overflow: auto;
+/* Timeline Container */
+.timeline-container {
+    height: 400px;
+    width: 95%;
+    margin: 30px auto;
     display: flex;
-    white-space: nowrap;
-    overflow-x: auto;
     align-items: center;
-
-    padding-left: 50px;
-    padding-right: 50px;
-
+    overflow-x: auto;
+    gap: 20px;
+    padding: 0 50px;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: var(--intel-blue) transparent;
 }
 
-.year-border {
-    width: auto;
-    height: 50px;
-    background-color: #1f62cf;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-}
-
-.year-text {
-    color: white;
-    font-size: 30px;
-}
-
-.timeline-box {
+/* Timeline Cards */
+.timeline-card {
     position: relative;
-    overflow: hidden;
-    height: 250px;
-    width: 250px;
     flex-shrink: 0;
-    margin: 10px;
-
-    background-color: black;
-    background-repeat: no-repeat;
-    background-position: center;
+    width: 280px;
+    height: 280px;
+    background-color: #000;
     background-size: cover;
-
-    box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, .5);
-    transition: all 0.3s ease;
-    white-space: normal;
-    overflow-wrap: break-word;
-    position: relative;
-
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
-
+    background-position: center;
+    border-radius: 4px; /* Subtle rounding for modern look */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: transform var(--transition-standard), box-shadow var(--transition-standard);
     scroll-snap-align: center;
-    scroll-snap-stop: always;
+    overflow: hidden;
 }
 
-.timeline-box::before {
+/* Accessibility: Keyboard focus and Hover effects */
+.timeline-card:hover, 
+.timeline-card:focus-within {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px var(--intel-blue);
+    outline: none;
+}
+
+/* Overlay for Text Contrast */
+.timeline-card::before {
     content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    opacity: 0;
-    transition: opacity 0.3s ease;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 20%, transparent 100%);
+    opacity: 0.8;
+    transition: opacity var(--transition-standard);
     z-index: 1;
 }
 
-.timeline-box:hover::before {
+.timeline-card:hover::before,
+.timeline-card:focus-within::before {
     opacity: 1;
 }
 
-.timeline-box:hover .timeline-text {
-    opacity: 1;
-}
-
-.timeline-box:hover {
-    transform: scale(1.1);
-    z-index: 10;
-}
-
-.timeline-text {
-    opacity: 0;
-    color: white;
-    padding-top: 5px;
-    padding-left: 5px;
-    transition: opacity 0.3s ease;
-}
-
-.year-border,
-.timeline-text {
+/* Label/Year Styling */
+.timeline-card .card-header {
     position: relative;
     z-index: 2;
+    background-color: var(--intel-blue);
+    color: white;
+    padding: 8px 15px;
+    font-weight: bold;
+    font-size: 1.25rem;
+    display: inline-block;
 }
 
-.whitespace {
-    height: 200px;
-}
-
-.timeline-box::before {
-    content: "";
+.card-description {
     position: absolute;
-    top: 0;
+    bottom: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: 1;
+    right: 0;
+    padding: 20px;
+    color: var(--text-light);
+    z-index: 2;
+    opacity: 1; /* Keep visible for better accessibility */
+    font-size: 1rem;
+    line-height: 1.4;
+    transform: translateY(10px);
+    transition: transform var(--transition-standard);
 }
 
-@media (max-width: 768px) {
+/* Container for each standalone column */
+.info-column {
+    background: transparent; /* Makes the "table" invisible */
+    padding: 20px;
+    border-left: 1px solid rgba(255, 255, 255, 0.2); /* Subtle vertical divider */
+}
 
-    .timeline-scroll {
-        display: block;
+/* Header styling for visibility */
+.column-header {
+    color: var(--intel-blue);
+    font-weight: 800;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.column-subheader {
+    color: #FFFFFF;
+    font-weight: 600;
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.column-details {
+    color: #E5E5E5;
+    background: rgba(255, 255, 255, 0.05); /* Very subtle background for reading contrast */
+    padding: 15px;
+    border-radius: 4px;
+    margin-top: 10px;
+    line-height: 1.6;
+}
+
+/* Button override for high visibility */
+.btn-intel-action {
+    background-color: #0071c5;
+    color: white !important;
+    border: 2px solid white;
+    font-weight: bold;
+    width: 100%; /* Makes button easier to click */
+}
+
+.btn-intel-action:focus {
+    outline: 4px solid #ffcc00; /* High contrast yellow for keyboard focus */
+}
+
+/* Subscription Card Styling */
+.subscription-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    backdrop-filter: blur(10px); /* Modern glass effect */
+}
+
+.subscription-input {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    border: 2px solid #ffffff !important;
+    color: white !important;
+    padding: 12px 20px;
+}
+
+.subscription-input:focus {
+    background-color: #000000 !important;
+    box-shadow: 0 0 0 4px #ffcc00; /* High-contrast yellow focus ring */
+    outline: none;
+}
+
+.subscription-input::placeholder {
+    color: #cccccc;
+}
+
+/* Footer Styling */
+.intel-footer {
+    background-color: var(--intel-dark);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-links a {
+    color: #E5E5E5;
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: 0 10px;
+    transition: color 0.2s ease;
+}
+
+.footer-links a:hover, .footer-links a:focus {
+    color: var(--intel-blue);
+    text-decoration: underline;
+    outline: 2px solid #ffcc00;
+}
+
+.text-dim {
+    color: #E5E5E5;
+}
+
+#langSwitch:focus {
+    box-shadow: none;
+    outline: 2px solid #ffcc00; /* Yellow focus for accessibility */
+}
+
+#langSwitch option {
+    background: #000814; /* Matches your dark theme */
+    color: white;
+}
+
+/* Make Carousel Controls Visible for Low Vision */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: var(--intel-blue);
+    border-radius: 50%;
+    padding: 20px;
+    background-size: 60%;
+    border: 2px solid white; /* High contrast border */
+}
+
+.carousel-control-prev, .carousel-control-next {
+    width: 5%; /* Larger click area */
+    opacity: 1; /* Always fully visible */
+}
+
+/* Fix Card Layout inside Carousel */
+.carousel-item .timeline-card {
+    width: 100%; /* Fill the column width */
+    margin: 0 auto;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .timeline-container {
+        flex-direction: column;
         height: auto;
         overflow-x: hidden;
-        white-space: normal;
+        padding: 20px;
+    }
+
+    .timeline-card {
         width: 100%;
-        padding: 20px 0;
-    }
-
-    .timeline-box {
-        margin: 20px auto;
-        width: 90%;
-        height: auto;
-        min-height: 250px;
+        max-width: 400px;
         transform: none !important;
-    }
-
-    .timeline-text {
-        opacity: 1;
-        padding-bottom: 20px;
-    }
-
-    .timeline-box::before {
-        opacity: 1;
-        background-color: rgba(0, 0, 0, 0.7);
     }
 }

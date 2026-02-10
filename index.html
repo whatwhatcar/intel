@@ -2,97 +2,202 @@
 <html lang="en">
 
 <head>
-  <title>Your Page Title</title>
+  <meta charset="UTF-8">
+  <title>Intel | A History of Innovation</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <link rel="stylesheet" href="styles/reset.css">
   <link rel="stylesheet" href="styles/styles.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
   <section class="hero">
     <div class="hero-content">
-      <img src="assets/logos/intel-logo.svg" alt="Description of my image" width="200" height="200">
+      <img src="assets/logos/intel-logo.svg" alt="Intel Logo" width="200" height="200">
     </div>
   </section>
 
-
-  <main class="main-content">
-    <div class="time-text-container">
-      <div class="time-text">Timeline</div>
-      <div class="section-divider"> </div>
+  <main class="main-wrapper">
+    <div class="time-text-container d-flex justify-content-between align-items-center p-4">
+      <h2 class="timeline-title m-0">Timeline</h2>
     </div>
 
-    <div class="timeline-container">
-      <div class="timeline-scroll">
-        <div class="timeline-box" style="background-image: url('./assets/images/founded.png');">
-          <div class="year-border">
-            <p class="year-text">1968</p>
-          </div>
-          <p class="timeline-text">Intel is founded on July 18 by Robert Noyce and Gordon Moore</p>
-        </div>
-        <div class="timeline-box" style="background-image: url('./assets/images/4004.png');">
-          <div class="year-border">
-            <p class="year-text">1971</p>
-          </div>
-          <p class="timeline-text">Launched the Intel 4004, the world’s first microprocessor</p>
-        </div>
-        <div class="timeline-box" style="background-image: url('./assets/images/8086.png');">
-          <div class="year-border">
-            <p class="year-text">1978</p>
-          </div>
-          <p class="timeline-text">Introduced the 8086 chip, establishing the x86 architecture (the standard for almost
-            all modern PCs)</p>
-        </div>
-        <div class="timeline-box" style="background-image: url('./assets/images/IBM.png');">
-          <div class="year-border">
-            <p class="year-text">1981</p>
-          </div>
-          <p class="timeline-text">IBM chose Intel’s processor for the first IBM PC, making Intel the "brain" of the
-            computer revolution.</p>
-        </div>
-        <div class="timeline-box" style="background-image: url('./assets/images/DRAM.png');">
-          <div class="year-border">
-            <p class="year-text">1985</p>
-          </div>
-          <p class="timeline-text">Intel stopped making memory chips (DRAM) to focus entirely on processors—a "bet the
-            company" move.</p>
-        </div>
-        <div class="timeline-box" style="background-image: url('./assets/images/Inside.png');">
-          <div class="year-border">
-            <p class="year-text">1991</p>
-          </div>
-          <p class="timeline-text">Launched the "Intel Inside" campaign, turning a component into a brand everyone
-            recognized.</p>
-        </div>
-        <div class="timeline-box" style="background-image: url('./assets/images/CORE.png');">
-          <div class="year-border">
-            <p class="year-text">2006</p>
-          </div>
-          <p class="timeline-text">Switched to the Core architecture (i3, i5, i7), focusing on power efficiency rather
-            than just raw speed.</p>
-        </div>
-        <div class="timeline-box" style="background-image: url('./assets/images/ai.png');">
-          <div class="year-border">
-            <p class="year-text">2026</p>
-          </div>
-          <p class="timeline-text">Heavy focus on AI PCs and the "5 nodes in 4 years" manufacturing blitz to return to
-            the #1 spot in tech.</p>
-        </div>
+    <div class="section-divider"></div>
 
+<section id="intelTimelineCarousel" class="carousel slide" data-bs-ride="false">
+  
+  <div class="carousel-inner container">
+    
+    <div class="carousel-item active">
+      <div class="row row-cols-1 row-cols-md-3 g-4 px-5">
+        <div class="col">
+          <div class="timeline-card" style="background-image: url('./assets/images/founded.png');" tabindex="0">
+            <div class="timeline-year">1968</div>
+            <div class="card-description">Intel is founded on July 18 by Robert Noyce and Gordon Moore.</div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="timeline-card" style="background-image: url('./assets/images/4004.png');" tabindex="0">
+            <div class="timeline-year">1971</div>
+            <div class="card-description">Launched the Intel 4004, the world’s first microprocessor.</div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="timeline-card" style="background-image: url('./assets/images/8086.png');" tabindex="0">
+            <div class="timeline-year">1978</div>
+            <div class="card-description">Introduced the 8086 chip, establishing the x86 architecture.</div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="whitespace"></div>
+    <div class="carousel-item">
+      <div class="row row-cols-1 row-cols-md-3 g-4 px-5">
+        <div class="col">
+          <div class="timeline-card" style="background-image: url('./assets/images/IBM.png');" tabindex="0">
+            <div class="timeline-year">1981</div>
+            <div class="card-description">IBM chose Intel for the first IBM PC, starting the revolution.</div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="timeline-card" style="background-image: url('./assets/images/DRAM.png');" tabindex="0">
+            <div class="timeline-year">1985</div>
+            <div class="card-description">Intel shifted focus entirely to microprocessors over memory.</div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="timeline-card" style="background-image: url('./assets/images/Inside.png');" tabindex="0">
+            <div class="timeline-year">1991</div>
+            <div class="card-description">Launched the iconic "Intel Inside" branding campaign.</div>
+          </div>
+        </div>
+      </div>
+    </div>
 
+  </div>
+
+  <button class="carousel-control-prev" type="button" data-bs-target="#intelTimelineCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#intelTimelineCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+
+</section>
+
+
+    <section class="container my-5">
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+
+        <div class="col">
+          <div class="info-column h-100">
+            <h3 class="column-header">Client Computing</h3>
+            <p class="column-subheader">Intel Core™ Ultra</p>
+            <div class="collapse" id="info1">
+              <div class="column-details">
+                Powering the next generation of AI-integrated personal laptops with built-in NPUs for efficient machine
+                learning and superior power management.
+              </div>
+            </div>
+            <button class="btn btn-intel-action mt-3" type="button" data-bs-toggle="collapse" data-bs-target="#info1"
+              aria-expanded="false">
+              Read More
+            </button>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="info-column h-100">
+            <h3 class="column-header">Data Center & AI</h3>
+            <p class="column-subheader">Xeon® Scalable</p>
+            <div class="collapse" id="info2">
+              <div class="column-details">
+                Scaling enterprise AI workloads and sustainable cloud infrastructure with Gaudi® 3 accelerators designed
+                for massive deep learning models.
+              </div>
+            </div>
+            <button class="btn btn-intel-action mt-3" type="button" data-bs-toggle="collapse" data-bs-target="#info2"
+              aria-expanded="false">
+              Read More
+            </button>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="info-column h-100">
+            <h3 class="column-header">Foundry Services</h3>
+            <p class="column-subheader">Intel 18A Node</p>
+            <div class="collapse" id="info3">
+              <div class="column-details">
+                The backbone of Intel’s "IDM 2.0" strategy, providing world-class manufacturing for internal products
+                and external customers globally.
+              </div>
+            </div>
+            <button class="btn btn-intel-action mt-3" type="button" data-bs-toggle="collapse" data-bs-target="#info3"
+              aria-expanded="false">
+              Read More
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="subscription-card p-4 p-md-5 text-center">
+      <h2 class="section-title mb-3 text-white">Stay Powered by Innovation</h2>
+      <p class="mb-4 text-light-accessible">Sign up for the latest updates on AI, hardware, and the future of computing.
+      </p>
+
+      <form class="row g-3 justify-content-center">
+        <div class="col-md-6">
+          <input type="email" class="form-control form-control-lg subscription-input"
+            placeholder="Enter your email address">
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-intel-action btn-lg px-5">Subscribe</button>
+        </div>
+      </form>
+      <small class="text-light-accessible d-block mt-3" style="opacity: 0.8;">
+        By subscribing, you agree to our privacy policy.
+      </small>
+    </div>
+
+    <footer class="intel-footer py-5">
+      <div class="container text-white">
+        <div class="row align-items-center">
+          <div class="col-md-4 text-center text-md-start">
+            <p class="mb-0 fw-bold">&copy; 2026 Intel Corporation.</p>
+          </div>
+
+          <div class="col-md-4 text-center">
+            <div class="d-inline-flex align-items-center bg-dark p-2 border border-white rounded">
+              <label for="langSwitch" class="me-2 small">Language:</label>
+              <select id="langSwitch" class="form-select form-select-sm bg-transparent text-white border-0"
+                onchange="switchLanguage(this.value)" style="cursor:pointer;">
+                <option value="en" class="bg-dark">English</option>
+                <option value="es" class="bg-dark">Español</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col-md-4 text-center text-md-end">
+            <ul class="list-inline mb-0 footer-links">
+              <li class="list-inline-item"><a href="#" class="text-white">Privacy</a></li>
+              <li class="list-inline-item"><a href="#" class="text-white">Terms</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
   </main>
 
-  <aside>
-
-  </aside>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="scripts/translate.js"></script>
 </body>
 
 </html>
